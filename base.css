@@ -1,0 +1,26 @@
+:root{
+    --verde-vibrante: #1db954;
+    --verde-escuro: #1aa34a;
+    --preto-suave: #121212;
+    --cinza-escuro: #181818;
+    --branco: #FFFFFF;
+    --branco-escuro: #b3b3b3;
+    --cinza-neutro1: #282828;
+    --cinza-neutro2: #404040;
+    --erro: #e22134;
+    --suporte: #3d91f4;
+    --suporte-roxo: #9b59b6;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    color: var(--branco);
+}
+
+body{
+    min-height: 100vh;
+    min-width: 100vw;
+    background: linear-gradient(0deg, var(--preto-suave) 0%, var(--preto-suave) 100%);
+}
+
