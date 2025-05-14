@@ -1,0 +1,21 @@
+# Ignorar dependências do Node.js
+node_modules/
+
+# Ignorar arquivos de log
+*.log
+npm-debug.log*
+
+# Ignorar variáveis de ambiente (caso use .env depois)
+.env
+
+# Ignorar arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Ignorar pastas de IDEs
+.vscode/
+.idea/
+
+# (Opcional) se futuramente você usar pastas de build
+dist/
+build/
