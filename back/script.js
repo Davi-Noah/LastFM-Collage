@@ -11,7 +11,6 @@ async function getTopTracks(user=USER, period=PERIOD, limit=LIMIT) {
     const url = `https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=${user}&api_key=${API_KEY}&period=${period}&limit=${limit}&format=json`
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
     
     return data.toptracks.track;
 }

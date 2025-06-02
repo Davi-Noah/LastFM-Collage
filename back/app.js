@@ -21,7 +21,6 @@ app.get('/', async (req, res) => {
 app.get('/inicial', async (req, res) => {
     const user = req.query.user;    
     const data = await getResults(user);
-    console.log(data);
     
     
     try {
