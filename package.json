@@ -1,0 +1,18 @@
+{
+  "name": "lastfm-collage",
+  "version": "1.0.0",
+  "description": "Projeto LastFM Collage",
+  "main": "back/app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch back/app.js",
+    "start": "node api/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {}
+}
