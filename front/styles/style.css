@@ -36,3 +36,9 @@ body{
     border-radius: 16px;
     border: 1px solid var(--cinza-neutro2);
 }
+
+hr {
+  border: none;
+  border-top: 2px solid #ccc;
+  margin: 2rem 0;
+}
