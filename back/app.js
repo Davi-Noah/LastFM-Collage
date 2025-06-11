@@ -1,52 +1,52 @@
 import express from 'express';
-import { readFile } from 'node:fs/promises';
 import { getResults } from './script.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const app = express();
 const port = 3000;
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const frontPath = path.join(__dirname, '../front');
+
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(frontPath));
 
-app.get('/', async (req, res) => {
-    try {
-        let html = await readFile('../front/index.html', 'utf8');
-        res.setHeader('Content-Type', 'text/html');
-        res.send(html);
-    } catch (error) {
-        res.status(500).send('Error reading file');
-    }
+const sendHtml = (res, filePath) => {
+    res.sendFile(filePath, (err) => {
+        if (err) {
+            console.error(`Erro ao enviar ${filePath}:`, err);
+            res.status(500).send('Erro ao carregar a página');
+        }
+    });
+};
+
+app.get('/', (req, res) => {
+    const indexPath = path.join(frontPath, 'index.html');
+    sendHtml(res, indexPath);
 });
-
 
 app.get('/inicial', async (req, res) => {
-    const user = req.query.user;    
-    const data = await getResults(user);
-    
-    
+    const user = String(req.query.user || '');
+
     try {
-        let html = await readFile('../front/inicial.html', 'utf8');
-        res.setHeader('Content-Type', 'text/html');
-        res.send(html);
+        const data = await getResults(user);
+        console.log(`Dados do usuário ${user}:`, data);
+
+        const inicialPath = path.join(frontPath, 'inicial.html');
+        sendHtml(res, inicialPath);
     } catch (error) {
-        res.status(500).send('Error reading file');
+        console.error('Erro ao processar inicial:', error);
+        res.status(500).send('Erro ao processar inicial');
     }
 });
 
-
-app.post('/buscar_usuario', async (req, res) => {
-    const { user } = req.body;
-
-    try {
-        res.redirect(`/inicial?user=${user}`);
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        res.status(500).send('Error fetching data');
-    }
-
+app.post('/buscar_usuario', (req, res) => {
+    const user = String(req.body.user || '');
+    res.redirect(`/inicial?user=${encodeURIComponent(user)}`);
 });
-
-app.use(express.static('../front'));
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+    console.log(`Servidor rodando em http://localhost:${port}`);
 });
