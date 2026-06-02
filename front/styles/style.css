@@ -1,45 +1,546 @@
-@import 'base.css';
-@import url('https://fonts.googleapis.com/css2?family=Faculty+Glyphic&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "base.css";
 
-body{
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: var(--font-headline);
+}
+
+.logo {
+  color: var(--brand-green);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Botões */
+.btn {
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    opacity 0.2s;
+  font-family: inherit;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  background-color: var(--brand-green-hover);
+}
+
+.btn:active {
+  background-color: var(--brand-green-active);
+}
+
+.btn-primary {
+  background-color: var(--brand-green);
+  color: #000;
+  padding: 10px 24px;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-large {
+  padding: 14px 28px;
+  font-size: 1rem;
+}
+
+.btn-secondary {
+  background-color: var(--btn-secondary-bg);
+  color: var(--text-primary);
+  padding: 8px 20px;
+  font-size: 0.9rem;
+}
+
+/* Hero Section (Principal) */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1; /* Preenche o espaço disponível */
+  padding: 60px 0;
+  gap: 40px;
+}
+
+.hero-content {
+  max-width: 450px;
+}
+
+.hero-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.hero-content p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+.hero-actions {
+  margin-bottom: 24px;
+}
+
+.hero-filters {
+  display: flex;
+  gap: 12px;
+}
+
+/* Imagem do Recibo */
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.receipt-mockup {
+  max-width: 100%;
+  height: auto;
+  /* Adiciona a inclinação característica que o recibo tem na imagem */
+  transform: rotate(4deg);
+  filter: drop-shadow(0px 20px 30px rgba(0, 0, 0, 0.5));
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  background-color: var(--bg-darker);
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--text-primary);
+}
+
+/* Responsividade Básica */
+@media (max-width: 850px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-image {
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+}
+
+/* Layout Principal da Área de Configuração */
+.config-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 60px 0 100px; /* Espaço para respirar na tela */
+}
+
+.config-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+}
+
+/* Cabeçalho "Print Your Stats" */
+.config-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.config-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.config-header p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* Cartão de Configurações (A caixa com borda) */
+.config-card {
+  background-color: rgba(
+    30,
+    30,
+    30,
+    0.4
+  ); /* Fundo um pouco mais claro que o body */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 40px;
+  width: 100%;
+  max-width: 650px;
+}
+
+/* Grupos internos (Período e Tipo) */
+.config-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.config-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-label); /* JetBrains Mono */
+  font-size: 0.8rem;
+  color: #e0e6d8; /* Tom levemente bege/esverdeado da imagem */
+  letter-spacing: 1.5px;
+}
+
+.config-label svg {
+  color: var(--text-secondary);
+}
+
+/* Grupo de Botões (Toggle) */
+.toggle-buttons {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.btn-toggle {
+  flex: 1; /* Faz todos os botões terem o mesmo tamanho */
+  background-color: #2a2a2a; /* Fundo escuro */
+  color: var(--text-primary);
+  padding: 14px 20px;
+  border-radius: 50px; /* Formato de pílula */
+  font-family: var(--font-headline); /* Montserrat */
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.btn-toggle:hover {
+  background-color: #333;
+}
+
+/* Estado Ativo dos Botões (Verde com Brilho) */
+.btn-toggle.active {
+  background-color: var(--brand-green);
+  color: #000;
+  box-shadow: 0 0 20px rgba(30, 215, 96, 0.25); /* Efeito de brilho */
+}
+
+/* Linha separadora */
+.divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 30px 0;
+}
+
+/* Botão de Ação Principal (Gerar Carrinho) */
+.config-action {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.btn-generate {
+  padding: 16px 32px;
+  font-size: 1rem;
+  font-family: var(--font-headline); /* Montserrat */
+  box-shadow: 0 0 20px rgba(30, 215, 96, 0.25);
+}
+
+/* Estilo do Input de Texto (Usuário) */
+.input-text {
+    width: 100%;
+    background-color: var(--btn-secondary-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    padding: 14px 20px;
+    border-radius: 8px; /* Arredondado suave, não pílula, para diferenciar dos botões */
+    font-family: var(--font-body);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-text:focus {
+    border-color: var(--brand-green);
+    box-shadow: 0 0 15px rgba(30, 215, 96, 0.15);
+}
+
+.input-text::placeholder {
+    color: rgba(160, 160, 160, 0.5); /* Placeholder mais apagadinho */
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .toggle-buttons {
+    flex-direction: column; /* Empilha os botões em telas pequenas */
+  }
+
+  .config-card {
+    padding: 24px;
+  }
+}
+
+
+
+
+
+
+
+/* =========================================
+   TELA DO CARRINHO (inicial.html)
+   ========================================= */
+
+/* Brilho verde no logo (Baseado na sua imagem) */
+.logo {
+    text-shadow: 0 0 15px rgba(30, 215, 96, 0.4);
+}
+
+.cart-section {
+    width: 100%;
+    padding: 40px 0;
+    flex: 1;
+}
+
+.cart-container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* Cartões Escuros */
+.cart-card {
+    background-color: rgba(30, 30, 30, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.cart-card h2 {
+    font-family: var(--font-headline);
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+}
+
+/* Colunas */
+.items-column {
+    flex: 2; /* Ocupa mais espaço */
+}
+
+.summary-column {
+    flex: 1; /* Ocupa menos espaço */
+    min-width: 300px;
+}
+
+/* ================== ITENS DO CARRINHO ================== */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.item-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.item-image-placeholder {
+    width: 50px;
+    height: 50px;
+    background-color: #111;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.item-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.item-artist {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.item-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+/* Badge de Plays */
+.item-plays {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+}
+
+.plays-label {
+    color: var(--text-secondary);
+}
+
+.plays-value {
+    color: var(--brand-green);
+    font-weight: 700;
+}
+
+/* Duração */
+.item-duration {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-family: var(--font-label);
+}
+
+.duration-label {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.duration-value {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+/* ================== RESUMO DO PEDIDO ================== */
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    font-family: var(--font-label);
+    font-size: 0.85rem;
+}
+
+.summary-label {
+    color: var(--text-secondary);
+}
+
+.summary-value {
+    color: var(--text-primary);
+}
+
+.text-green {
+    color: var(--brand-green);
+    font-weight: 700;
+}
+
+.summary-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin: 24px 0;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    font-family: var(--font-label);
+}
+
+.summary-total .summary-label {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.total-time-value {
+    font-size: 1.8rem;
+    color: var(--brand-green);
+    font-weight: 700;
+}
+
+.btn-block {
+    width: 100%;
+    padding: 16px;
+    font-size: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-
-    gap: 2rem;
-
-    font-family: "Faculty Glyphic", sans-serif;
-    font-weight: 400;
 }
 
-.cartify{
-    background-color: var(--cinza-escuro);
-    border: 1px solid var(--cinza-neutro2);
-    padding: 1rem;
-    border-radius: 16px;
-}
-
-
-.container{
-    box-sizing: border-box;
+/* Responsividade */
+@media (max-width: 850px) {
+    .cart-container {
+        flex-direction: column;
+    }
     
-    width: 60vw;
-    height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem;
-
-    background: var(--cinza-escuro);
-    border-radius: 16px;
-    border: 1px solid var(--cinza-neutro2);
+    .summary-column {
+        width: 100%;
+    }
+    
+    .item-right {
+        gap: 12px;
+    }
 }
 
-hr {
-  border: none;
-  border-top: 2px solid #ccc;
-  margin: 2rem 0;
-  width: 70vw;
+@media (max-width: 500px) {
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .item-right {
+        width: 100%;
+        justify-content: space-between;
+    }
 }

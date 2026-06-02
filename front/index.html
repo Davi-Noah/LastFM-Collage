@@ -1,35 +1,87 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LastFM - Collage</title>
-    <link rel="stylesheet" href="/styles/style.css">
-    <link rel="stylesheet" href="/styles/form.css">
-</head>
-<body>
-    <h1 class="cartify">Cartify</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cartfy - Landing Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600&family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="icon" type="image/png" href="imgs/screen-removebg-preview.png" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <h1 class="logo">Cartify</h1>
+        <a href="/consulta"
+          ><button class="btn btn-primary">Build your collage.</button></a
+        >
+      </div>
+    </header>
 
-    <div class="request">
-        <div class="form-control">
-            <form action="/buscar_usuario" method="POST">
-                <input type="text" id="user" name="user" required="">
-                <label for="user">
-                    <span style="transition-delay:0ms">U</span><span style="transition-delay:50ms">s</span><span style="transition-delay:100ms">e</span><span style="transition-delay:150ms">r</span><span  style="transition-delay:200ms">n</span><span style="transition-delay:250ms">a</span><span style="transition-delay:300ms">m</span><span style="transition-delay:350ms">e</span>
-                </label>
-                <button type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path>
-                    </svg>
+    <main class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h2>Your music, your receipt.</h2>
+          <p>
+            Transform your Last.fm data into a tangible shopping receipt. See
+            what you "consumed" in the last week, month, or ever, with a
+            minimalist design inspired by thermal prints.
+          </p>
 
-                    
-                    <div class="text">
-                        Buscar
-                    </div>
-                </button>
-            </form>
+          <div class="hero-actions">
+            <a href="/consulta">
+              <button class="btn btn-primary btn-large">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                  <polyline points="10 17 15 12 10 7"></polyline>
+                  <line x1="15" y1="12" x2="3" y2="12"></line>
+                </svg>
+                Build your collage
+              </button>
+            </a>
+          </div>
+
+          <div class="hero-filters">
+            <button class="btn btn-secondary">Last month</button>
+            <button class="btn btn-secondary">Semester</button>
+            <button class="btn btn-secondary">All time</button>
+          </div>
         </div>
-    </div>
-    <hr>
-</body>
+
+        <div class="hero-image">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY2ODppR2lniisySWsZ1LJpcYMXZoJuKC00Xnml_zj3v7m74_KgBL1gfin9xrDleXVt3L8CYc5oiSriX4qIIcbox-2WPr0U8aUGrgq4TNv8Ze-n243vTZqv6a1byIDZNS7XeHQ8vpO_7792h9NlRDzBo7XGq1_egK3ssBJnNNLXKWGVT2-4f_QSwvGw7XP_cWI2HCdy5vvgXmZBMEdAy32X3jwXRpS-ENP4Ptj-Y8aM6ZxnEqxqgeZERFKrwPDurPO7NXDkjFp45Y"
+            alt="Exemplo de recibo musical do Cartfy"
+            class="receipt-mockup"
+            style="width: 300px"
+          />
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-copy">&copy; 2026 Cartfy. Powered by davinoah.</div>
+        <nav class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Github</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
 </html>

@@ -27,18 +27,32 @@ app.get('/', (req, res) => {
     sendHtml(res, indexPath);
 });
 
-app.get('/inicial', async (req, res) => {
+app.get('/consulta', (req, res) => {
+    const consultaPath = path.join(frontPath, 'consulta.html');
+    sendHtml(res, consultaPath);
+});
+
+app.get('/inicial', (req, res) => {
+    const htmlPath = path.join(frontPath, 'inicial.html');
+    sendHtml(res, htmlPath);
+});
+
+// 2. ROTA DE DADOS (API): Onde o front-end vai bater para buscar as músicas
+app.get('/api/gerar', async (req, res) => {
     const user = String(req.query.user || '');
+    const periodo = String(req.query.periodo || '6_meses');
+    const tipo = String(req.query.tipo || 'albuns');
 
     try {
-        const data = await getResults(user);
-        console.log(`Dados do usuário ${user}:`, data);
+        const data = await getResults(user, periodo, tipo);
+        console.log(`Enviando dados para o front-end: ${user} - ${tipo}`);
+        
+        // Devolve os dados empacotados em JSON para o navegador ler!
+        res.json(data); 
 
-        const inicialPath = path.join(frontPath, 'inicial.html');
-        sendHtml(res, inicialPath);
     } catch (error) {
-        console.error('Erro ao processar inicial:', error);
-        res.status(500).send('Erro ao processar inicial');
+        console.error('Erro ao obter dados:', error);
+        res.status(500).json({ erro: 'Erro ao obter dados do usuário' });
     }
 });
 

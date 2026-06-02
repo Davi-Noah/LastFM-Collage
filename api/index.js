@@ -25,19 +25,33 @@ app.get('/', (req, res) => {
     sendHtmlFile(res, htmlPath);
 });
 
-app.get('/inicial', async (req, res) => {
-    const user = String(req.query.user || '');
+app.get('/consulta', (req, res) => {
+    const consultaPath = path.join(frontDir, 'consulta.html');
+    sendHtmlFile(res, consultaPath);
+});
 
-    try {
-        const data = await getResults(user);
-        console.log(`Dados obtidos para o usuário ${user}:`, data);
-    } catch (error) {
-        console.error('Erro ao obter dados:', error);
-        return res.status(500).send('Erro ao obter dados do usuário');
-    }
-
+app.get('/inicial', (req, res) => {
     const htmlPath = path.join(frontDir, 'inicial.html');
     sendHtmlFile(res, htmlPath);
+});
+
+// 2. ROTA DE DADOS (API): Onde o front-end vai bater para buscar as músicas
+app.get('/api/gerar', async (req, res) => {
+    const user = String(req.query.user || '');
+    const periodo = String(req.query.periodo || '6_meses');
+    const tipo = String(req.query.tipo || 'albuns');
+
+    try {
+        const data = await getResults(user, periodo, tipo);
+        console.log(`Enviando dados para o front-end: ${user} - ${tipo}`);
+        
+        // Devolve os dados empacotados em JSON para o navegador ler!
+        res.json(data); 
+
+    } catch (error) {
+        console.error('Erro ao obter dados:', error);
+        res.status(500).json({ erro: 'Erro ao obter dados do usuário' });
+    }
 });
 
 app.post('/buscar_usuario', (req, res) => {

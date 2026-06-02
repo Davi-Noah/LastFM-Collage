@@ -1,26 +1,81 @@
-:root{
-    --verde-vibrante: #1db954;
-    --verde-escuro: #1aa34a;
-    --preto-suave: #121212;
-    --cinza-escuro: #181818;
-    --branco: #FFFFFF;
-    --branco-escuro: #b3b3b3;
-    --cinza-neutro1: #282828;
-    --cinza-neutro2: #404040;
-    --erro: #e22134;
-    --suporte: #3d91f4;
-    --suporte-roxo: #9b59b6;
+
+:root {
+    /* 1. Backgrounds (Tons de Marrom Super Escuro/Café) */
+    --bg-base: #120d0a;         /* Marrom quase preto (o fundo mais profundo) */
+    --bg-surface: #1b1410;      /* Superfície principal (substitui o #161515, agora mais quente) */
+    --bg-elevated: #291f1a;     /* Cards, modais e menus suspensos */
+    --bg-darker: #0d0907;       /* Para elementos que precisam de mais contraste, como o rodapé */
+
+    /* 2. Textos (Brancos e Cinzas Quentes) */
+    --text-primary: #fdfbf9;    /* Branco levemente "creme" para não ofuscar no fundo quente */
+    --text-secondary: #a89f99;  /* Cinza com um toque de marrom para harmonia */
+    --text-muted: #736b66;      /* Textos desabilitados/placeholders */
+    --text-inverse: #000000;    /* Texto para botões verdes */
+
+    /* 3. Marca (O verde se destaca maravilhosamente aqui) */
+    --brand-green: #1ed760;          
+    --brand-green-hover: #3be477;    
+    --brand-green-active: #169c46;   
+
+    /* 4. Ações Secundárias (Tons quentes) */
+    --btn-secondary-bg: #2e231d;       /* O antigo #2a2a2a, agora harmonizado */
+    --btn-secondary-hover: #3a2d26;    
+    --btn-secondary-active: #211914;   
+
+    /* 5. Estrutura (Bordas e Divisores) */
+    --border-subtle: #2e231d;   /* Divisórias discretas */
+    --border-strong: #45362e;   /* Bordas de destaque */
+    
+    /* 6. Cores Semânticas (Mantidas, mas você pode usar tons levemente ajustados se quiser) */
+    --feedback-success: #1ed760; 
+    --feedback-error: #ef5a5a;   
+    --feedback-warning: #f59e0b; 
+    --feedback-info: #3b82f6;
+
+    --font-headline: 'Montserrat', sans-serif;
+    --font-body: 'Geist', sans-serif;
+    --font-label: 'JetBrains Mono', monospace;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
-    color: var(--branco);
+    box-sizing: border-box;
 }
 
-body{
+body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    display: flex;
+    justify-content: center;
     min-height: 100vh;
-    min-width: 100vw;
-    background: linear-gradient(0deg, var(--preto-suave) 0%, var(--preto-suave) 100%);
+    flex-direction: column; 
+    
 }
 
+h1, h2, h3, h4, h5, h6, .logo {
+    font-family: var(--font-headline);
+}
+
+
+.receipt-text, 
+.hero-filters .btn-secondary,
+.footer-copy {
+    font-family: var(--font-label);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+    margin: 0 auto
+}
+
+a{
+    text-decoration: none;  
+}
