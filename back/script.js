@@ -3,7 +3,7 @@ import { get } from "node:http";
 const API_KEY = "da5f5f73fc0a93bcbdb45a9b315c2746";
 
 async function fetchLastFmData(user, period, method) {
-  const limit = 5;
+  const limit = 7;
   const url = `https://ws.audioscrobbler.com/2.0/?method=${method}&user=${user}&api_key=${API_KEY}&period=${period}&limit=${limit}&format=json`;
 
   const response = await fetch(url);

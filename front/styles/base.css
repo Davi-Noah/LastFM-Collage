@@ -58,6 +58,14 @@ h1, h2, h3, h4, h5, h6, .logo {
     font-family: var(--font-headline);
 }
 
+main{
+    flex: 1;
+}
+
+header, footer{
+    flex-shrink: 0;
+}
+
 
 .receipt-text, 
 .hero-filters .btn-secondary,
