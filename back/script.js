@@ -12,40 +12,52 @@ async function fetchLastFmData(user, period, method) {
   return data;
 }
 
+// script.js atualizado (trecho da função renderData)
 function renderData(data, tipoFront) {
   let mscs = [];
 
   if (tipoFront === "musicas" && data.toptracks) {
     data.toptracks.track.forEach((item) => {
+      // Pega a imagem de tamanho "large" (índice 2) se existir
+      const imgUrl =
+        item.image && item.image.length > 2 ? item.image[2]["#text"] : "";
       mscs.push({
         name: item.name,
         artist: item.artist.name,
         playcount: item.playcount,
-        duration: item.duration, // <-- PUXANDO A DURAÇÃO AQUI!
+        duration: item.duration,
+        image: imgUrl, // <-- Adicionando a imagem aqui!
       });
     });
   }
-  // Para Álbuns e Artistas a API não devolve tempo, então deixamos 0
+  // Faça o mesmo para artistas e álbuns...
   else if (tipoFront === "artistas" && data.topartists) {
     data.topartists.artist.forEach((item) => {
+      const imgUrl =
+        item.image && item.image.length > 2 ? item.image[2]["#text"] : "";
       mscs.push({
         name: item.name,
         artist: "",
         playcount: item.playcount,
         duration: "0",
+        image: imgUrl,
       });
     });
   } else if (tipoFront === "albuns" && data.topalbums) {
     data.topalbums.album.forEach((item) => {
+      const imgUrl =
+        item.image && item.image.length > 2 ? item.image[2]["#text"] : "";
       mscs.push({
         name: item.name,
         artist: item.artist.name,
         playcount: item.playcount,
         duration: "0",
+        image: imgUrl,
       });
     });
   }
-
+  
+  console.log(mscs)
   return mscs;
 }
 

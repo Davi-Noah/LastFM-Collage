@@ -117,7 +117,7 @@
             let totalSegundosListados = 0;
 
             dados.forEach((item) => {
-              // 1. Tratamento da Duração (Converte segundos pra Min:Seg)
+              // 1. Tratamento da Duração (Converte segundos pra Min:Seg) - SEU CÓDIGO INTACTO
               const duracaoSegundos = parseInt(item.duration) || 0;
               let tempoFormatado = "--:--";
 
@@ -135,28 +135,39 @@
               div.className = "cart-item";
               const artistaText = item.artist ? item.artist : "Last.fm";
 
-              div.innerHTML = `
-            <div class="item-left">
-              <div class="item-image-placeholder">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
-              </div>
-              <div class="item-details">
-                <span class="item-name">${item.name}</span>
-                <span class="item-artist">${artistaText}</span>
-              </div>
-            </div>
+              // Lógica para mostrar a imagem, IGNORANDO a estrelinha do Last.fm
+              const isStarPlaceholder =
+                item.image &&
+                item.image.includes("2a96cbd8b46e442fc41c2b86b821562f");
 
-            <div class="item-right">
-              <div class="item-plays">
-                <span class="plays-label">PLAYS</span>
-                <span class="plays-value">x${item.playcount}</span>
-              </div>
-              <div class="item-duration">
-                <span class="duration-label">DURATION</span>
-                <span class="duration-value">${tempoFormatado}</span>
-              </div>
-            </div>
-          `;
+              const imageHTML =
+                item.image && !isStarPlaceholder
+                  ? `<img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">`
+                  : `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>`;
+
+              // AQUI: Juntei o item-left (com a imagem) e o seu item-right (com plays e duração)
+              div.innerHTML = `
+    <div class="item-left">
+      <div class="item-image-placeholder">
+        ${imageHTML}
+      </div>
+      <div class="item-details">
+        <span class="item-name">${item.name}</span>
+        <span class="item-artist">${artistaText}</span>
+      </div>
+    </div>
+
+    <div class="item-right">
+      <div class="item-plays">
+        <span class="plays-label">PLAYS</span>
+        <span class="plays-value">x${item.playcount}</span>
+      </div>
+      <div class="item-duration">
+        <span class="duration-label">DURATION</span>
+        <span class="duration-value">${tempoFormatado}</span>
+      </div>
+    </div>
+  `;
               itemsContainer.appendChild(div);
             });
 
