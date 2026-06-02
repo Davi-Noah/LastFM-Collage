@@ -34,8 +34,18 @@
   background-color: var(--brand-green-hover);
 }
 
+.no-hover:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  background-color: var(--btn-secondary-bg);
+}
+
+
 .btn:active {
   background-color: var(--brand-green-active);
+}
+.no-hover:active {
+  background-color: var(--btn-secondary-bg);
 }
 
 .btn-primary {
@@ -409,6 +419,14 @@
     font-size: 1rem;
     color: var(--text-primary);
     margin-bottom: 4px;
+}
+
+.item-name {
+    display: block;        /* Necessário para aplicar as propriedades abaixo */
+    white-space: nowrap;   /* Impede que o texto pule para a linha de baixo */
+    overflow: hidden;      /* Esconde o que passar do limite da caixa */
+    text-overflow: ellipsis; /* Adiciona os "..." no final */
+    max-width: 250px;      /* Ajuste esse valor conforme o espaço que você tem */
 }
 
 .item-artist {
