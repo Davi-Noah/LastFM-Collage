@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "node --watch back/app.js",
-    "start": "node api/index.js"
+    "start": "node back/app.js",
+    "check": "node --check back/script.js && node --check back/createApp.js && node --check back/app.js && node --check api/index.js && node --check front/scripts/config.js && node --check front/scripts/consent.js && node --check front/scripts/ads.js && node --check front/scripts/results.js",
+    "test": "node --test test/script.test.js"
   },
   "keywords": [],
   "author": "",

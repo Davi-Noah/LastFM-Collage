@@ -7,6 +7,8 @@ npm-debug.log*
 
 # Ignorar variáveis de ambiente (caso use .env depois)
 .env
+.env.*
+!.env.example
 
 # Ignorar arquivos do sistema operacional
 .DS_Store

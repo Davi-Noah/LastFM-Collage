@@ -1,89 +1,64 @@
-
 :root {
-    /* 1. Backgrounds (Tons de Marrom Super Escuro/Café) */
-    --bg-base: #120d0a;         /* Marrom quase preto (o fundo mais profundo) */
-    --bg-surface: #1b1410;      /* Superfície principal (substitui o #161515, agora mais quente) */
-    --bg-elevated: #291f1a;     /* Cards, modais e menus suspensos */
-    --bg-darker: #0d0907;       /* Para elementos que precisam de mais contraste, como o rodapé */
-
-    /* 2. Textos (Brancos e Cinzas Quentes) */
-    --text-primary: #fdfbf9;    /* Branco levemente "creme" para não ofuscar no fundo quente */
-    --text-secondary: #a89f99;  /* Cinza com um toque de marrom para harmonia */
-    --text-muted: #736b66;      /* Textos desabilitados/placeholders */
-    --text-inverse: #000000;    /* Texto para botões verdes */
-
-    /* 3. Marca (O verde se destaca maravilhosamente aqui) */
-    --brand-green: #1ed760;          
-    --brand-green-hover: #3be477;    
-    --brand-green-active: #169c46;   
-
-    /* 4. Ações Secundárias (Tons quentes) */
-    --btn-secondary-bg: #2e231d;       /* O antigo #2a2a2a, agora harmonizado */
-    --btn-secondary-hover: #3a2d26;    
-    --btn-secondary-active: #211914;   
-
-    /* 5. Estrutura (Bordas e Divisores) */
-    --border-subtle: #2e231d;   /* Divisórias discretas */
-    --border-strong: #45362e;   /* Bordas de destaque */
-    
-    /* 6. Cores Semânticas (Mantidas, mas você pode usar tons levemente ajustados se quiser) */
-    --feedback-success: #1ed760; 
-    --feedback-error: #ef5a5a;   
-    --feedback-warning: #f59e0b; 
-    --feedback-info: #3b82f6;
-
-    --font-headline: 'Montserrat', sans-serif;
-    --font-body: 'Geist', sans-serif;
-    --font-label: 'JetBrains Mono', monospace;
+  --bg-base: #120d0a;
+  --bg-surface: #1b1410;
+  --bg-elevated: #241a15;
+  --bg-darker: #0d0907;
+  --text-primary: #fdfbf9;
+  --text-secondary: #c2b8b1;
+  --text-muted: #9a8e86;
+  --brand-green: #1ed760;
+  --brand-green-hover: #48e67d;
+  --brand-green-active: #169c46;
+  --border-subtle: #3b2d25;
+  --feedback-error: #ff8585;
+  --feedback-warning: #ffcb6b;
+  --font-headline: "Montserrat", sans-serif;
+  --font-body: "Geist", sans-serif;
+  --font-label: "JetBrains Mono", monospace;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
+
+html { background: var(--bg-base); }
 
 body {
-    background-color: var(--bg-base);
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-    flex-direction: column; 
-    
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.5;
 }
 
-h1, h2, h3, h4, h5, h6, .logo {
-    font-family: var(--font-headline);
-}
+body.page-shell { display: flex; flex-direction: column; }
 
-main{
-    flex: 1;
-}
+main { flex: 1; }
 
-header, footer{
-    flex-shrink: 0;
-}
+a { color: inherit; }
 
+button, input { font: inherit; }
 
-.receipt-text, 
-.hero-filters .btn-secondary,
-.footer-copy {
-    font-family: var(--font-label);
+button { cursor: pointer; }
+
+:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
 }
 
 .container {
-    width: 100%;
-    max-width: 1200px;
-    padding: 0 40px;
-    display: flex;
-    justify-content: space-between;
-
-    align-items: center;
-    margin: 0 auto
+  width: min(100% - 48px, 1120px);
+  margin-inline: auto;
 }
 
-a{
-    text-decoration: none;  
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
