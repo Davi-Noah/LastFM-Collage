@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "node --watch back/app.js",
     "start": "node back/app.js",
-    "check": "node --check back/lastfm.js && node --check back/createApp.js && node --check back/app.js && node --check server.js && node --check public/scripts/config.js && node --check public/scripts/consent.js && node --check public/scripts/ads.js && node --check public/scripts/results.js",
+    "check": "node --check back/lastfm.js && node --check back/covers.js && node --check back/createApp.js && node --check back/app.js && node --check server.js && node --check public/scripts/config.js && node --check public/scripts/consent.js && node --check public/scripts/ads.js && node --check public/scripts/results.js",
     "test": "node --test"
   },
   "keywords": [],

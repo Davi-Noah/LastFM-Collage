@@ -1,3 +1,5 @@
+import { fillMissingImages } from "./covers.js";
+
 const LASTFM_BASE_URL = "https://ws.audioscrobbler.com/2.0/";
 const REQUEST_TIMEOUT_MS = 8_000;
 export const RESULT_LIMIT = 7;
@@ -144,5 +146,5 @@ async function fetchLastFmData(user, period, method) {
 
 export async function getResults(user, period, type) {
   const data = await fetchLastFmData(user, periodMap[period], methodMap[type]);
-  return normalizeItems(data, type);
+  return fillMissingImages(normalizeItems(data, type), type);
 }
