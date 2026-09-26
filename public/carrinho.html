@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex,follow" />
     <meta name="theme-color" content="#120d0a" />
     <meta name="google-adsense-account" content="ca-pub-2178155704632455" />
-    <title>Seu recibo — Cartify</title>
+    <title>Seu carrinho — Cartify</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,11 +14,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles/style.css" />
-    <link
-      rel="icon"
-      type="image/png"
-      href="/imgs/screen-removebg-preview.png"
-    />
+    <link rel="icon" type="image/png" href="/imgs/screen-removebg-preview.png" />
     <script src="/scripts/results.js" defer></script>
     <script src="/scripts/consent.js" defer></script>
     <script src="/scripts/ads.js" defer></script>
@@ -26,50 +22,52 @@
   <body class="page-shell">
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="/" aria-label="Cartify, página inicial"
-          >Cartify</a
-        >
+        <a class="brand" href="/" aria-label="Cartify, página inicial">Cartify</a>
         <nav class="nav-links" aria-label="Navegação principal">
-          <a href="/sobre">Como funciona</a
-          ><a class="button button-primary" href="/consulta"
-            >Criar outro recibo</a
-          >
+          <a href="/sobre">Como funciona</a>
+          <a class="button button-primary" href="/consulta">Montar outro carrinho</a>
         </nav>
       </div>
     </header>
     <main class="cart-section">
-      <div class="container cart-container" id="receipt-export">
-        <section class="cart-card" aria-labelledby="receipt-title">
+      <div class="container cart-container" id="cart-export">
+        <section class="cart-card" id="cart-view" aria-labelledby="cart-title">
           <p class="eyebrow" id="result-context">Carregando</p>
-          <h1 id="receipt-title">Seu recibo</h1>
+          <h1 id="cart-title">Seu carrinho</h1>
           <div id="cart-items-list" role="status" aria-live="polite">
             <p class="status-message">Buscando suas estatísticas na Last.fm…</p>
           </div>
         </section>
+        <section class="receipt-stage" id="receipt-view" aria-label="Recibo" hidden></section>
         <aside class="cart-card" aria-labelledby="summary-title">
           <h2 id="summary-title">Resumo</h2>
           <div class="summary-row">
-            <span id="summary-label">Itens</span
-            ><strong id="summary-items">—</strong>
+            <span>Itens</span><strong id="summary-items">—</strong>
           </div>
           <div class="summary-row">
-            <span>Total de reproduções</span
-            ><strong id="summary-plays">—</strong>
+            <span>Total de reproduções</span><strong id="summary-plays">—</strong>
           </div>
           <hr class="summary-divider" />
           <div class="summary-total">
-            <span id="summary-metric-label">Tempo estimado</span
-            ><strong id="summary-metric">—</strong>
+            <span id="summary-metric-label">Tempo estimado</span><strong id="summary-metric">—</strong>
+          </div>
+          <div class="view-switch" data-html2canvas-ignore>
+            <span class="field-label" id="view-label">Visual</span>
+            <div class="toggle-group toggle-group-2" role="group" aria-labelledby="view-label">
+              <button class="toggle-button" type="button" data-view="carrinho" aria-pressed="true" disabled>Carrinho</button>
+              <button class="toggle-button" type="button" data-view="recibo" aria-pressed="false" disabled>Recibo</button>
+            </div>
           </div>
           <button
             id="btn-download"
             class="button button-primary button-block"
             type="button"
+            data-html2canvas-ignore
             disabled
           >
             Baixar PNG
           </button>
-          <p id="download-status" class="sr-only" aria-live="polite"></p>
+          <p id="download-status" class="download-status" aria-live="polite" data-html2canvas-ignore></p>
         </aside>
       </div>
     </main>
@@ -77,37 +75,25 @@
       <div class="container footer-inner">
         <span>© 2026 Cartify. Dados fornecidos pela Last.fm.</span>
         <nav class="footer-links" aria-label="Links institucionais">
-          <a href="/sobre">Sobre</a><a href="/privacidade">Privacidade</a
-          ><a href="/termos">Termos</a><a href="/contato">Contato</a>
+          <a href="/sobre">Sobre</a>
+          <a href="/privacidade">Privacidade</a>
+          <a href="/termos">Termos</a>
+          <a href="/contato">Contato</a>
+          <button class="link-button" type="button" data-consent-open>Preferências de anúncios</button>
         </nav>
       </div>
     </footer>
-    <aside
-      class="consent-banner"
-      data-consent-banner
-      hidden
-      aria-label="Preferências de privacidade"
-    >
+    <aside class="consent-banner" data-consent-banner hidden aria-label="Preferências de privacidade">
       <strong>Privacidade e anúncios</strong>
       <p>
         Com sua autorização, usamos o Google AdSense para exibir anúncios. Você
-        pode mudar essa escolha apagando os dados deste site no navegador.
+        pode mudar essa escolha a qualquer momento em “Preferências de anúncios”,
+        no rodapé.
       </p>
       <p><a href="/privacidade">Leia a Política de Privacidade</a>.</p>
       <div class="consent-actions">
-        <button
-          class="button button-primary"
-          type="button"
-          data-consent="accepted"
-        >
-          Aceitar</button
-        ><button
-          class="button button-secondary"
-          type="button"
-          data-consent="rejected"
-        >
-          Recusar
-        </button>
+        <button class="button button-primary" type="button" data-consent="accepted">Aceitar</button>
+        <button class="button button-secondary" type="button" data-consent="rejected">Recusar</button>
       </div>
     </aside>
   </body>

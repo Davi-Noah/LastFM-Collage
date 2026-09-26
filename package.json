@@ -1,14 +1,17 @@
 {
   "name": "lastfm-collage",
   "version": "1.0.0",
-  "description": "Projeto LastFM Collage",
+  "description": "Cartify: seus mais ouvidos da Last.fm em um carrinho de compras",
   "main": "back/app.js",
   "type": "module",
+  "engines": {
+    "node": ">=20.12"
+  },
   "scripts": {
     "dev": "node --watch back/app.js",
     "start": "node back/app.js",
-    "check": "node --check back/script.js && node --check back/createApp.js && node --check back/app.js && node --check api/index.js && node --check front/scripts/config.js && node --check front/scripts/consent.js && node --check front/scripts/ads.js && node --check front/scripts/results.js",
-    "test": "node --test test/script.test.js"
+    "check": "node --check back/lastfm.js && node --check back/createApp.js && node --check back/app.js && node --check server.js && node --check public/scripts/config.js && node --check public/scripts/consent.js && node --check public/scripts/ads.js && node --check public/scripts/results.js",
+    "test": "node --test"
   },
   "keywords": [],
   "author": "",

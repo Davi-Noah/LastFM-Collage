@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Monte um carrinho de compras com seus artistas, álbuns e músicas mais ouvidos na Last.fm."
+    />
+    <meta name="theme-color" content="#120d0a" />
+    <meta name="google-adsense-account" content="ca-pub-2178155704632455" />
+    <title>Cartify — seu histórico Last.fm num carrinho de compras</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="icon" type="image/png" href="/imgs/screen-removebg-preview.png" />
+    <script src="/scripts/consent.js" defer></script>
+    <script src="/scripts/ads.js" defer></script>
+  </head>
+  <body class="page-shell">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="/" aria-label="Cartify, página inicial">Cartify</a>
+        <nav class="nav-links" aria-label="Navegação principal">
+          <a href="/sobre">Como funciona</a>
+          <a class="button button-primary" href="/consulta">Montar meu carrinho</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow">Seu histórico, no carrinho</p>
+            <h1>Sua música no carrinho.</h1>
+            <p class="hero-copy">
+              Transforme seus dados públicos da Last.fm em um carrinho de compras
+              com os álbuns, artistas ou faixas que você mais ouviu.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary button-large" href="/consulta">Montar meu carrinho</a>
+              <a class="button button-secondary button-large" href="/sobre">Entenda como funciona</a>
+            </div>
+            <p class="trust-line">
+              Sem conta, sem senha e sem salvar seu histórico musical.
+            </p>
+          </div>
+
+          <aside class="cart-preview" aria-label="Prévia ilustrativa de um carrinho Cartify">
+            <div class="cart-preview-header">
+              <span>Seu carrinho</span><span class="cart-preview-badge">3 itens</span>
+            </div>
+            <p class="cart-preview-period">Álbuns · últimos 6 meses</p>
+            <div class="cart-preview-list" aria-hidden="true">
+              <div class="cart-preview-item">
+                <span class="cover-placeholder">♪</span>
+                <span class="cart-preview-name">Disco favorito<small>Artista favorito</small></span>
+                <span class="cart-preview-qty">×42</span>
+              </div>
+              <div class="cart-preview-item">
+                <span class="cover-placeholder">♪</span>
+                <span class="cart-preview-name">Aquele álbum<small>Outra banda</small></span>
+                <span class="cart-preview-qty">×36</span>
+              </div>
+              <div class="cart-preview-item">
+                <span class="cover-placeholder">♪</span>
+                <span class="cart-preview-name">Descoberta do mês<small>Artista novo</small></span>
+                <span class="cart-preview-qty">×28</span>
+              </div>
+            </div>
+            <div class="cart-preview-total">
+              <span>Total de plays</span><strong>106</strong>
+            </div>
+            <span class="button button-primary button-block" aria-hidden="true">Baixar PNG</span>
+          </aside>
+        </div>
+      </section>
+
+      <section class="feature-section" aria-label="Recursos">
+        <div class="container feature-grid">
+          <article class="feature-card">
+            <p class="section-label">01</p>
+            <h2>Escolha o período</h2>
+            <p>
+              Veja o último mês, os últimos seis meses ou toda a sua história na
+              plataforma.
+            </p>
+          </article>
+          <article class="feature-card">
+            <p class="section-label">02</p>
+            <h2>Escolha os produtos</h2>
+            <p>
+              Encha o carrinho com suas músicas, artistas ou álbuns mais
+              escutados.
+            </p>
+          </article>
+          <article class="feature-card">
+            <p class="section-label">03</p>
+            <h2>Guarde ou compartilhe</h2>
+            <p>
+              Baixe uma imagem do seu carrinho, ou do recibo da compra, para
+              postar, guardar ou enviar a alguém.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>© 2026 Cartify. Dados fornecidos pela Last.fm.</span>
+        <nav class="footer-links" aria-label="Links institucionais">
+          <a href="/sobre">Sobre</a>
+          <a href="/privacidade">Privacidade</a>
+          <a href="/termos">Termos</a>
+          <a href="/contato">Contato</a>
+          <button class="link-button" type="button" data-consent-open>Preferências de anúncios</button>
+        </nav>
+      </div>
+    </footer>
+    <aside class="consent-banner" data-consent-banner hidden aria-label="Preferências de privacidade">
+      <strong>Privacidade e anúncios</strong>
+      <p>
+        Com sua autorização, usamos o Google AdSense para exibir anúncios. Você
+        pode mudar essa escolha a qualquer momento em “Preferências de anúncios”,
+        no rodapé.
+      </p>
+      <p><a href="/privacidade">Leia a Política de Privacidade</a>.</p>
+      <div class="consent-actions">
+        <button class="button button-primary" type="button" data-consent="accepted">Aceitar</button>
+        <button class="button button-secondary" type="button" data-consent="rejected">Recusar</button>
+      </div>
+    </aside>
+  </body>
+</html>

@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Entenda como o Cartify usa dados públicos da Last.fm para criar recibos visuais."
+      content="Entenda como o Cartify usa dados públicos da Last.fm para montar um carrinho de compras com o que você mais ouviu."
     />
     <meta name="theme-color" content="#120d0a" />
+    <meta name="google-adsense-account" content="ca-pub-2178155704632455" />
     <title>Como funciona — Cartify</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,18 +17,17 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="icon" type="image/png" href="/imgs/screen-removebg-preview.png" />
     <script src="/scripts/consent.js" defer></script>
     <script src="/scripts/ads.js" defer></script>
   </head>
   <body class="page-shell">
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="/" aria-label="Cartify, página inicial"
-          >Cartify</a
-        >
+        <a class="brand" href="/" aria-label="Cartify, página inicial">Cartify</a>
         <nav class="nav-links" aria-label="Navegação principal">
-          <a href="/consulta">Criar recibo</a
-          ><a class="button button-primary" href="/consulta">Começar</a>
+          <a href="/sobre" aria-current="page">Como funciona</a>
+          <a class="button button-primary" href="/consulta">Montar meu carrinho</a>
         </nav>
       </div>
     </header>
@@ -39,7 +39,8 @@
         </h1>
         <p class="page-lead">
           O Cartify transforma uma seleção de dados públicos da Last.fm em um
-          recibo visual. Não é afiliado à Last.fm.
+          carrinho de compras: cada item é uma música, artista ou álbum, e a
+          quantidade é o número de plays. Não é afiliado à Last.fm.
         </p>
       </div>
       <div class="content-stack">
@@ -51,24 +52,25 @@
           </p>
         </article>
         <article class="content-card">
-          <h2>2. Escolha o recorte</h2>
+          <h2>2. Escolha o que vai para o carrinho</h2>
           <p>
             Selecione músicas, artistas ou álbuns e o período desejado. O
-            Cartify consulta a API pública da Last.fm e mostra até sete
-            resultados.
+            Cartify consulta a API pública da Last.fm e coloca no carrinho até
+            sete itens.
           </p>
         </article>
         <article class="content-card">
-          <h2>3. Gere sua lembrança</h2>
+          <h2>3. Leve seu carrinho</h2>
           <p>
             Depois de revisar o resultado, você pode baixar uma imagem do
-            recibo. O arquivo é criado no seu navegador.
+            carrinho ou trocar para o visual de recibo, com cara de cupom
+            impresso. O arquivo é criado no seu navegador.
           </p>
         </article>
         <article class="content-card">
           <h2>O que o site não faz</h2>
           <p>
-            Não armazena seu histórico musical, não vende sua senha e não tem
+            Não armazena seu histórico musical, não pede sua senha e não tem
             acesso a informações privadas da sua conta. Consulte a
             <a href="/privacidade">Política de Privacidade</a> para detalhes.
           </p>
@@ -79,34 +81,25 @@
       <div class="container footer-inner">
         <span>© 2026 Cartify. Dados fornecidos pela Last.fm.</span>
         <nav class="footer-links" aria-label="Links institucionais">
-          <a href="/privacidade">Privacidade</a><a href="/termos">Termos</a
-          ><a href="/contato">Contato</a>
+          <a href="/sobre" aria-current="page">Sobre</a>
+          <a href="/privacidade">Privacidade</a>
+          <a href="/termos">Termos</a>
+          <a href="/contato">Contato</a>
+          <button class="link-button" type="button" data-consent-open>Preferências de anúncios</button>
         </nav>
       </div>
     </footer>
-    <aside
-      class="consent-banner"
-      data-consent-banner
-      hidden
-      aria-label="Preferências de privacidade"
-    >
+    <aside class="consent-banner" data-consent-banner hidden aria-label="Preferências de privacidade">
       <strong>Privacidade e anúncios</strong>
-      <p>Com sua autorização, usamos o Google AdSense para exibir anúncios.</p>
+      <p>
+        Com sua autorização, usamos o Google AdSense para exibir anúncios. Você
+        pode mudar essa escolha a qualquer momento em “Preferências de anúncios”,
+        no rodapé.
+      </p>
       <p><a href="/privacidade">Leia a Política de Privacidade</a>.</p>
       <div class="consent-actions">
-        <button
-          class="button button-primary"
-          type="button"
-          data-consent="accepted"
-        >
-          Aceitar</button
-        ><button
-          class="button button-secondary"
-          type="button"
-          data-consent="rejected"
-        >
-          Recusar
-        </button>
+        <button class="button button-primary" type="button" data-consent="accepted">Aceitar</button>
+        <button class="button button-secondary" type="button" data-consent="rejected">Recusar</button>
       </div>
     </aside>
   </body>
