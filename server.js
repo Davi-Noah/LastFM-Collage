@@ -1,4 +1,7 @@
 import express from "express";
 import { createApp } from "./back/createApp.js";
 
-export default createApp(express());
+const app = express();
+createApp(app);
+
+export default app;
