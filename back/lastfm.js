@@ -1,5 +1,11 @@
+import { fillMissingImages } from "./covers.js";
+
 const LASTFM_BASE_URL = "https://ws.audioscrobbler.com/2.0/";
 const REQUEST_TIMEOUT_MS = 8_000;
+export const RESULT_LIMIT = 7;
+
+// Imagem genérica (estrela cinza) que a Last.fm devolve para todo artista desde 2019.
+const PLACEHOLDER_IMAGE_HASH = "2a96cbd8b46e442fc41c2b86b821562f";
 
 export const PERIODS = new Set(["1_mes", "6_meses", "todo_tempo"]);
 export const TYPES = new Set(["musicas", "artistas", "albuns"]);
@@ -16,6 +22,23 @@ const methodMap = {
   albuns: "user.gettopalbums",
 };
 
+const UNAVAILABLE = "A integração com a Last.fm está indisponível no momento. Tente mais tarde.";
+const UNSTABLE = "A Last.fm está instável agora. Tente novamente em instantes.";
+
+// https://www.last.fm/api/errorcodes
+const lastFmErrors = {
+  4: [UNAVAILABLE, 503],
+  6: ["Não encontramos esse usuário na Last.fm. Confira o nome e tente de novo.", 404],
+  8: [UNSTABLE, 502],
+  10: [UNAVAILABLE, 503],
+  11: [UNSTABLE, 503],
+  16: [UNSTABLE, 503],
+  17: ["Esse perfil está privado na Last.fm.", 403],
+  26: [UNAVAILABLE, 503],
+  29: ["A Last.fm está limitando consultas agora. Tente de novo em alguns minutos.", 503],
+};
+const CONFIG_ERRORS = new Set([4, 10, 26]);
+
 export class LastFmError extends Error {
   constructor(message, status = 502) {
     super(message);
@@ -28,8 +51,10 @@ function asArray(value) {
 }
 
 function imageUrl(item) {
-  const source = asArray(item.image).find((image) => image?.["#text"]);
+  // A Last.fm lista as imagens da menor para a maior; usamos a maior disponível.
+  const source = asArray(item.image).findLast((image) => image?.["#text"]);
   const url = source?.["#text"] || "";
+  if (url.includes(PLACEHOLDER_IMAGE_HASH)) return "";
 
   try {
     const parsed = new URL(url);
@@ -39,7 +64,7 @@ function imageUrl(item) {
   }
 }
 
-function renderData(data, type) {
+export function normalizeItems(data, type) {
   if (type === "musicas") {
     return asArray(data.toptracks?.track).map((item) => ({
       name: String(item.name || "Faixa sem nome"),
@@ -69,6 +94,12 @@ function renderData(data, type) {
   }));
 }
 
+function errorFromCode(code) {
+  if (CONFIG_ERRORS.has(code)) console.error(`Last.fm recusou a chave da API (erro ${code}).`);
+  const [message, status] = lastFmErrors[code] || ["A Last.fm recusou a consulta. Tente novamente em instantes.", 502];
+  return new LastFmError(message, status);
+}
+
 async function fetchLastFmData(user, period, method) {
   const apiKey = process.env.LASTFM_API_KEY;
   if (!apiKey) {
@@ -81,7 +112,7 @@ async function fetchLastFmData(user, period, method) {
     user,
     api_key: apiKey,
     period,
-    limit: "7",
+    limit: String(RESULT_LIMIT),
     format: "json",
   }).toString();
 
@@ -94,14 +125,11 @@ async function fetchLastFmData(user, period, method) {
       headers: { Accept: "application/json" },
     });
 
-    if (!response.ok) {
+    // A Last.fm costuma responder erros com status HTTP 4xx e o código no corpo JSON.
+    const data = await response.json().catch(() => null);
+    if (data?.error) throw errorFromCode(Number(data.error));
+    if (!response.ok || !data) {
       throw new LastFmError("A Last.fm não respondeu como esperado. Tente novamente em instantes.");
-    }
-
-    const data = await response.json();
-    if (data.error) {
-      const status = data.error === 6 ? 404 : 422;
-      throw new LastFmError(data.message || "Não foi possível encontrar esse perfil.", status);
     }
 
     return data;
@@ -116,7 +144,7 @@ async function fetchLastFmData(user, period, method) {
   }
 }
 
-export async function getResults(user, periodFront, typeFront) {
-  const data = await fetchLastFmData(user, periodMap[periodFront], methodMap[typeFront]);
-  return renderData(data, typeFront);
+export async function getResults(user, period, type) {
+  const data = await fetchLastFmData(user, periodMap[period], methodMap[type]);
+  return fillMissingImages(normalizeItems(data, type), type);
 }
