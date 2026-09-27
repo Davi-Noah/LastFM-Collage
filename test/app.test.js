@@ -1,10 +1,31 @@
 import assert from "node:assert/strict";
+import { readdirSync, readFileSync } from "node:fs";
 import { createRequire } from "node:module";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { after, before, describe, test } from "node:test";
 import { createApp, validateQuery } from "../back/createApp.js";
 
 const require = createRequire(import.meta.url);
 const vercelConfig = require("../vercel.json");
+
+// Política do AdSense: nada de anúncio em telas sem conteúdo do editor (formulário, resultado, contato, legais, erro).
+test("script de anúncios só aparece em páginas com conteúdo editorial", () => {
+  const publicDir = fileURLToPath(new URL("../public/", import.meta.url));
+  const withAds = readdirSync(publicDir, { recursive: true })
+    .filter((file) => file.endsWith(".html"))
+    .map((file) => file.replaceAll("\\", "/"))
+    .filter((file) => readFileSync(path.join(publicDir, file), "utf8").includes("/scripts/ads.js"))
+    .sort();
+  assert.deepEqual(withAds, [
+    "guias/como-ler-estatisticas.html",
+    "guias/conectar-spotify-lastfm.html",
+    "guias/o-que-e-scrobble.html",
+    "guias/perguntas-frequentes.html",
+    "index.html",
+    "sobre.html",
+  ]);
+});
 
 describe("validateQuery", () => {
   test("aceita uma consulta válida e remove espaços do usuário", () => {
@@ -68,6 +89,16 @@ describe("rotas", () => {
     assert.match(body, /\/consulta</);
     assert.doesNotMatch(body, /\/carrinho</);
     assert.doesNotMatch(body, /\/contato</);
+  });
+
+  test("guias respondem e entram no sitemap", async () => {
+    const sitemap = await (await fetch(`${baseUrl}/sitemap.xml`)).text();
+    for (const route of ["/guias", "/guias/conectar-spotify-lastfm", "/guias/o-que-e-scrobble", "/guias/como-ler-estatisticas", "/guias/perguntas-frequentes"]) {
+      const response = await fetch(`${baseUrl}${route}`);
+      assert.equal(response.status, 200, route);
+      assert.match(await response.text(), /<h1/, route);
+      assert.match(sitemap, new RegExp(`${route}<`), route);
+    }
   });
 
   test("rota desconhecida devolve 404", async () => {

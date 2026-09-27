@@ -16,6 +16,11 @@ const pageFiles = {
   "/privacidade": "privacidade.html",
   "/termos": "termos.html",
   "/contato": "contato.html",
+  "/guias": "guias.html",
+  "/guias/conectar-spotify-lastfm": "guias/conectar-spotify-lastfm.html",
+  "/guias/o-que-e-scrobble": "guias/o-que-e-scrobble.html",
+  "/guias/como-ler-estatisticas": "guias/como-ler-estatisticas.html",
+  "/guias/perguntas-frequentes": "guias/perguntas-frequentes.html",
 };
 const unlistedPages = new Set(["/carrinho", "/contato"]);
 
